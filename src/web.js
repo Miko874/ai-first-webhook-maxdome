@@ -13,28 +13,15 @@ app.post('/', require('body-parser').json(), async (req, res) => {
     },
   };
   try {
-    if (typeof request !== 'object') {
-      throw new Error('request must be an object');
-    }
-    request.session = request.session || {};
-    if (typeof request.session !== 'object') {
-      throw new Error('request.session must be an object');
-    }
     response.session = request.session;
-    let intent = request;
-    while (intent) {
-      request.name = intent.name;
-      if (!request.name) {
-        throw new Error('missing name');
-      }
-      request.params = intent.params || {};
-      if (typeof request.params !== 'object') {
-        throw new Error('request.params must be an object');
-      }
-      intent = false;
+    let run = true;
+    while (run) {
+      run = false;
       try {
         if (await require(`./actions/${request.name}`)(request, response, { maxdome })) {
-          intent = request.session.intent;
+          run = true;
+          request.name = request.session.intent.name;
+          request.params = request.session.intent.params;
         }
       } catch (e) {
         if (e.code !== 'MODULE_NOT_FOUND') {
