@@ -6,15 +6,17 @@ app.listen(process.env.PORT);
 const maxdome = require('drequest-maxdome').getRequestBuilder();
 
 app.post('/', require('body-parser').json(), async (req, res) => {
-  const json = req.body;
-  const request = {
-    params: json.params,
-  };
+  const request = req.body;
   const response = {
     render: (renderer, data) => {
       require(`./renderers/${renderer}`)(request, response, data);
     },
   };
-  await require(`./intents/${json.intent}`)(request, response, { maxdome });
+  try {
+    await require(`./intents/${request.intent}`)(request, response, { maxdome });
+  } catch (e) {
+    console.log(e);
+    response.say = 'Something went wrong, please try again later';
+  }
   res.send(response);
 });
