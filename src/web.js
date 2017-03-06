@@ -1,5 +1,4 @@
 require('dotenv').config({ silent: true });
-const _ = require('lodash');
 
 const app = require('express')();
 app.listen(process.env.PORT);
@@ -14,20 +13,40 @@ app.post('/', require('body-parser').json(), async (req, res) => {
     },
   };
   try {
-    const name = _.get(request, 'name');
-    if (!name) {
-      throw new Error('missing name');
+    if (typeof request !== 'object') {
+      throw new Error('request must be an object');
     }
-    let module;
-    try {
-      module = require(`./actions/${name}`);
-    } catch (e) {
-      if (e.code !== 'MODULE_NOT_FOUND') {
-        throw e;
+    request.session = request.session || {};
+    if (typeof request.session !== 'object') {
+      throw new Error('request.session must be an object');
+    }
+    response.session = request.session;
+    let intent = request;
+    while (intent) {
+      request.name = intent.name;
+      if (!request.name) {
+        throw new Error('missing name');
       }
-      module = require(`./intents/${name}`);
+      request.params = intent.params || {};
+      if (typeof request.params !== 'object') {
+        throw new Error('request.params must be an object');
+      }
+      intent = false;
+      try {
+        if (await require(`./actions/${request.name}`)(request, response, { maxdome })) {
+          intent = request.session.intent;
+        }
+      } catch (e) {
+        if (e.code !== 'MODULE_NOT_FOUND') {
+          throw e;
+        }
+        await require(`./intents/${request.name}`)(request, response, { maxdome });
+        response.session.intent = {
+          name: request.name,
+          params: request.params,
+        };
+      }
     }
-    await module(request, response, { maxdome });
   } catch (e) {
     console.log(e);
     response.say = 'Something went wrong, please try again later';
