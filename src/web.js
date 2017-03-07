@@ -9,7 +9,7 @@ app.post('/', require('body-parser').json(), async (req, res) => {
   const request = req.body;
   const id = request.id;
   console.log(`id: ${id}`);
-  console.log(`(${id}) request: ${request}`);
+  console.log(`(${id}) request: ${JSON.stringify(request)}`);
   const response = {
     render: (renderer, data) => {
       require(`./renderers/${renderer}`)(request, response, data);
@@ -41,6 +41,6 @@ app.post('/', require('body-parser').json(), async (req, res) => {
     console.log(e);
     response.say = 'Something went wrong, please try again later';
   }
-  console.log(`(${id}) response: ${response}`);
+  console.log(`(${id}) response: ${JSON.stringify(response)}`);
   res.send(response);
 });
