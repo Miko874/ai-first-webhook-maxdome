@@ -7,6 +7,9 @@ const maxdome = require('drequest-maxdome').getRequestBuilder();
 
 app.post('/', require('body-parser').json(), async (req, res) => {
   const request = req.body;
+  const id = request.id;
+  console.log(`id: ${id}`);
+  console.log(`(${id}) request: ${request}`);
   const response = {
     render: (renderer, data) => {
       require(`./renderers/${renderer}`)(request, response, data);
@@ -38,5 +41,6 @@ app.post('/', require('body-parser').json(), async (req, res) => {
     console.log(e);
     response.say = 'Something went wrong, please try again later';
   }
+  console.log(`(${id}) response: ${response}`);
   res.send(response);
 });
