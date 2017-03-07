@@ -1,0 +1,9 @@
+{
+  "name": "intent",
+  "params": {
+    "key": "value"
+  },
+  "session": {
+    "key": "value"
+  }
+}
