@@ -1,8 +1,15 @@
 require('dotenv').config({ silent: true });
+const _ = require('lodash');
 
 const app = require('express')();
 app.listen(process.env.PORT);
 
+const i18n = require('i18n');
+i18n.configure({
+  directory: __dirname + '/../locales',
+  updateFiles: false,
+  locales: ['en', 'de'],
+});
 const maxdome = require('drequest-maxdome').getRequestBuilder();
 
 app.post('/', require('body-parser').json(), async (req, res) => {
@@ -40,6 +47,21 @@ app.post('/', require('body-parser').json(), async (req, res) => {
   } catch (e) {
     console.log(e);
     response.say = 'Something went wrong, please try again later';
+  }
+  const paths = [
+    'say',
+    'display.title',
+    'display.text',
+  ];
+  for (const path of paths) {
+    const value = _.get(response, path);
+    if (value) {
+      if (Array.isArray(value)) {
+        _.set(response, path, i18n.__({ phrase: value[0], locale: request.locale }, value[1]));
+      } else {
+        _.set(response, path, i18n.__({ phrase: value, locale: request.locale }));
+      }
+    }
   }
   console.log(`(${id}) response: ${JSON.stringify(response)}`);
   res.send(response);
