@@ -6,7 +6,7 @@ app.listen(process.env.PORT);
 
 const i18n = require('i18n');
 i18n.configure({
-  directory: __dirname + '/../locales',
+  directory: `${__dirname}/../locales`,
   updateFiles: false,
   locales: ['en', 'de'],
 });
