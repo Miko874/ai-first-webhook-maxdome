@@ -2,5 +2,6 @@
   "Be welcome": "Be welcome",
   "No assets available": "No assets available",
   "No more assets available": "No more assets available",
-  "Something went wrong, please try again later": "Something went wrong, please try again later"
+  "Something went wrong, please try again later": "Something went wrong, please try again later",
+  "Todays tip of the day come from {{firstname}} {{surname}}: {{title}}, {{headline}}": "Todays tip of the day come from {{firstname}} {{surname}}: {{title}}, {{headline}}"
 }
