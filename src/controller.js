@@ -1,8 +1,16 @@
 const _ = require('lodash');
+const drequest = require('drequest').Request;
 
 module.exports = ({ i18n, maxdome }) =>
   ['post', ['/', require('body-parser').json(), async (req, res) => {
     const request = req.body;
+    request.linkedAccount = async () => {
+      const accessToken = request.user.accessToken;
+      if (!accessToken) {
+        return;
+      }
+      return await drequest.post(proccess.env.AI_OAUTH_URL, { body: { accessToken } });
+    };
     const id = request.id;
     console.log(`id: ${id}`);
     console.log(`(${id}) request: ${JSON.stringify(request)}`);
