@@ -9,7 +9,7 @@ module.exports = ({ i18n, maxdome }) =>
       if (!accessToken) {
         return;
       }
-      return await drequest.post(proccess.env.AI_OAUTH_URL, { body: { accessToken } });
+      return await drequest.post(process.env.AI_OAUTH_URL, { body: { accessToken } });
     };
     const id = request.id;
     console.log(`id: ${id}`);
