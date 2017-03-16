@@ -6,6 +6,7 @@ module.exports = (request, response, { asset }) => {
       title: asset.title,
       text: asset.description,
     };
+    response.session.assetId = asset.id;
     response.session.pageStart = pageStart;
   } else {
     if (pageStart > 1) {

@@ -23,4 +23,5 @@ module.exports = (request, response, { tipOfTheDay }) => {
     title: title,
     text: asset.description,
   };
+  response.session.assetId = asset.id;
 };
