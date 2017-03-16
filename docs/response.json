@@ -8,5 +8,6 @@
   "session": {
     "key": "value"
   },
-  "finishSession": false
+  "finishSession": false,
+  "requireAccessToken": false
 }

@@ -1,7 +1,10 @@
 {
+  "Account not linked with a maxdome user": "Account not linked with a maxdome user",
   "Be welcome": "Be welcome",
+  "No asset in the current session": "No asset in the current session",
   "No assets available": "No assets available",
   "No more assets available": "No more assets available",
+  "Ok": "Ok",
   "Something went wrong, please try again later": "Something went wrong, please try again later",
   "Todays tip of the day come from {{firstname}} {{surname}}: {{title}}, {{headline}}": "Todays tip of the day come from {{firstname}} {{surname}}: {{title}}, {{headline}}"
 }
