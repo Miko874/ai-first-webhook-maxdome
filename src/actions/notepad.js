@@ -1,6 +1,6 @@
 const SessionOptions = require('drequest-maxdome').SessionOptions;
 
-module.exports = ({ maxdome }) => async (request, response) => {
+module.exports = async (request, response, { maxdome }) => {
   const assetId = request.session.assetId;
   if (!assetId) {
     response.say = 'No asset in the current session';
