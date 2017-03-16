@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const drequest = require('drequest').Request;
+const Request = require('drequest').Request;
 
 module.exports = ({ i18n, maxdome }) =>
   ['post', ['/', require('body-parser').json(), async (req, res) => {
@@ -9,7 +9,7 @@ module.exports = ({ i18n, maxdome }) =>
       if (!accessToken) {
         return;
       }
-      return await drequest.post(process.env.AI_OAUTH_URL, { body: { accessToken } });
+      return await new Request().post(process.env.AI_OAUTH_URL, { body: { accessToken } });
     };
     const id = request.id;
     console.log(`id: ${id}`);
