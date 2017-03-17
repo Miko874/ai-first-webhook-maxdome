@@ -1,0 +1,8 @@
+back Zurück
+more Weiter
+newAssets was es Neues gibt
+newAssets was es Neues an {genre} gibt
+notepad Zum Merkzettel hinzufügen
+searchAssets nach {name}
+thanks Danke
+tipOfTheDay nach dem Tipp des Tages

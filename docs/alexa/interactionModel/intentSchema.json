@@ -1,0 +1,42 @@
+{
+  "intents": [
+    {
+      "intent": "back",
+      "slots": []
+    },
+    {
+      "intent": "more",
+      "slots": []
+    },
+    {
+      "intent": "newAssets",
+      "slots": [
+        {
+          "name": "genre",
+          "type": "GENRE"
+        }
+      ]
+    },
+    {
+      "intent": "notepad",
+      "slots": []
+    },
+    {
+      "intent": "searchAssets",
+      "slots": [
+        {
+          "name": "name",
+          "type": "NAME"
+        }
+      ]
+    },
+    {
+      "intent": "thanks",
+      "slots": []
+    },
+    {
+      "intent": "tipOfTheDay",
+      "slots": []
+    }
+  ]
+}
