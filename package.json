@@ -28,7 +28,7 @@
     "dcontrollers": "^1.1.0",
     "dexpress": "^2.0.1",
     "dotenv": "^4.0.0",
-    "drequest-maxdome": "^2.3.1",
+    "drequest-maxdome": "^2.3.2",
     "i18n": "^0.8.3",
     "lodash": "^4.17.4"
   },
