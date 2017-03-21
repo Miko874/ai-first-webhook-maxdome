@@ -50,13 +50,14 @@ module.exports = ({ i18n, maxdome }) =>
       'display.title',
       'display.text',
     ];
+    const language = _.get(request, 'locale', 'en').substr(0, 2);
     for (const path of paths) {
       const value = _.get(response, path);
       if (value) {
         if (Array.isArray(value)) {
-          _.set(response, path, i18n.__({ phrase: value[0], locale: request.locale }, value[1]));
+          _.set(response, path, i18n.__({ phrase: value[0], locale: language }, value[1]));
         } else {
-          _.set(response, path, i18n.__({ phrase: value, locale: request.locale }));
+          _.set(response, path, i18n.__({ phrase: value, locale: language }));
         }
       }
     }
