@@ -64,6 +64,6 @@ module.exports = ({ i18n, maxdome, secret }) =>
       }
     }
     delete response.render;
-    console.log({ error, request, response });
+    console.log(JSON.stringify({ error, request, response }));
     res.send(response);
   }]];
