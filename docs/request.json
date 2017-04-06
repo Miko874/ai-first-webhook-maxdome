@@ -1,10 +1,13 @@
 {
+  "application": "application",
+  "connector": "connector",
   "id": "id",
   "locale": "locale",
   "name": "intent",
   "params": {
     "key": "value"
   },
+  "secret": "secret",
   "session": {
     "key": "value"
   },

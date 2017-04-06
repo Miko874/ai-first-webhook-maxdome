@@ -11,5 +11,5 @@ i18n.configure({
 const maxdome = require('drequest-maxdome').getRequestBuilder();
 
 require('dcontrollers')(app, [
-  require('./controller')({ i18n, maxdome }),
+  require('./controller')({ i18n, maxdome, secret: process.env.AI_WEBHOOK_SECRET }),
 ]);

@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const Request = require('drequest').Request;
 
-module.exports = ({ i18n, maxdome }) =>
+module.exports = ({ i18n, maxdome, secret }) =>
   ['post', ['/', require('body-parser').json(), async (req, res) => {
     const request = req.body;
     request.linkedAccount = async () => {
@@ -20,6 +20,9 @@ module.exports = ({ i18n, maxdome }) =>
       },
     };
     try {
+      if (secret && request.secret !== secret) {
+        throw new Error('incorrect secret');
+      }
       response.session = request.session;
       let run = true;
       while (run) {
