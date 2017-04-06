@@ -12,13 +12,12 @@ module.exports = ({ i18n, maxdome, secret }) =>
       return await new Request().post(process.env.AI_OAUTH_URL, { body: { accessToken } });
     };
     const id = request.id;
-    console.log(`id: ${id}`);
-    console.log(`(${id}) request: ${JSON.stringify(request)}`);
     const response = {
       render: (renderer, data) => {
         require(`./renderers/${renderer}`)(request, response, data);
       },
     };
+    let error;
     try {
       if (secret && req.headers['secret'] !== secret) {
         throw new Error(`incorrect secret "${req.headers['secret']}"`);
@@ -45,7 +44,7 @@ module.exports = ({ i18n, maxdome, secret }) =>
         }
       }
     } catch (e) {
-      console.log(e);
+      error = e;
       response.say = 'Something went wrong, please try again later';
     }
     const paths = [
@@ -64,6 +63,7 @@ module.exports = ({ i18n, maxdome, secret }) =>
         }
       }
     }
-    console.log(`(${id}) response: ${JSON.stringify(response)}`);
+    delete response.render;
+    console.log({ error, request, response });
     res.send(response);
   }]];
