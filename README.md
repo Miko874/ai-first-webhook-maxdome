@@ -9,12 +9,10 @@ Webhook for maxdome supporting the AI JSON format.
 
 ```json
 {
-  "connector": "connector",
   "id": "id",
   "locale": "de",
   "name": "newAssets",
   "params": {},
-  "secret": "secret",
   "session": {},
   "user": {
     "id": "id",

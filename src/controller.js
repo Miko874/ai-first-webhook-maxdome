@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const jwt = require('jsonwebtoken');
 const Request = require('drequest').Request;
 
 module.exports = ({ i18n, maxdome, secret }) =>
@@ -20,8 +21,10 @@ module.exports = ({ i18n, maxdome, secret }) =>
       },
     };
     try {
-      if (secret && request.secret !== secret) {
-        throw new Error('incorrect secret');
+      if (secret) {
+        console.log(`(${id}) jwt-token: ${request.headers['jwt-token']}`);
+        const decoded = jwt.verify(request.headers['jwt-token'], secret);
+        console.log(`(${id}) jwt-decoded: ${decoded}`);
       }
       response.session = request.session;
       let run = true;
