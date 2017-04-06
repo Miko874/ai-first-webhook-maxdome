@@ -20,7 +20,7 @@ module.exports = ({ i18n, maxdome, secret }) =>
     let error;
     try {
       if (secret && req.headers['secret'] !== secret) {
-        throw new Error(`incorrect secret "${req.headers['secret']}"`);
+        throw new Error(`incorrect secret '${req.headers['secret']}'`);
       }
       response.session = request.session;
       let run = true;
