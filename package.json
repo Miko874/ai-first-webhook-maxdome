@@ -30,7 +30,6 @@
     "dotenv": "^4.0.0",
     "drequest-maxdome": "^2.3.3",
     "i18n": "^0.8.3",
-    "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
