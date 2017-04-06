@@ -24,7 +24,7 @@ module.exports = ({ i18n, maxdome, secret }) =>
       if (secret) {
         console.log(`(${id}) jwt-token: ${req.headers['jwt-token']}`);
         const decoded = jwt.verify(req.headers['jwt-token'], secret);
-        console.log(`(${id}) jwt-decoded: ${decoded}`);
+        console.log(`(${id}) jwt-decoded: ${JSON.stringify(decoded)}`);
       }
       response.session = request.session;
       let run = true;
