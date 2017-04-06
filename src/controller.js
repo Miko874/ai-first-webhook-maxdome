@@ -44,7 +44,7 @@ module.exports = ({ i18n, maxdome, secret }) =>
         }
       }
     } catch (e) {
-      error = e;
+      error = e.message;
       response.say = 'Something went wrong, please try again later';
     }
     const paths = [
