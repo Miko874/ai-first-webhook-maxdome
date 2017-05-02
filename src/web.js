@@ -1,6 +1,6 @@
 require('dotenv').config({ silent: true });
 
-const { app } = require('dexpress');
+const app = require('dexpress')();
 
 const i18n = require('i18n');
 i18n.configure({
