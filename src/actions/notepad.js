@@ -14,7 +14,7 @@ module.exports = async (request, response, { maxdome }) => {
   }
   await maxdome.post('v1/mxd/notepad/%customerId%', [
     { body: { contentId: assetId } },
-    new SessionOptions(linkedAccount)
+    new SessionOptions(linkedAccount),
   ]);
   response.say = 'Ok';
 };
