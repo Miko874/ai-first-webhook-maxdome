@@ -3,6 +3,7 @@
 
 Webhook for maxdome supporting the AI JSON format.
 
+
 # Example Workflow
 
 ## AI Request
