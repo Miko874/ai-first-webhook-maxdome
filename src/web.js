@@ -1,6 +1,4 @@
-require('dotenv').config({ silent: true });
-
-const app = require('dexpress')();
+require('dotenv-safe').config();
 
 const i18n = require('i18n');
 i18n.configure({
@@ -8,8 +6,14 @@ i18n.configure({
   updateFiles: false,
   locales: ['en', 'de'],
 });
-const maxdome = require('drequest-maxdome').getRequestBuilder();
 
-require('dcontrollers')(app, [
-  require('./controller')({ i18n, maxdome, secret: process.env.AI_WEBHOOK_SECRET }),
-]);
+require('dcontrollers')(
+  require('dexpress')(),
+  [
+    require('./controller')({
+      i18n,
+      maxdome: require('drequest-maxdome').getRequestBuilder(),
+      secret: process.env.AI_WEBHOOK_SECRET,
+    }),
+  ]
+);

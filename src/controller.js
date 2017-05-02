@@ -4,14 +4,13 @@ const Request = require('drequest').Request;
 module.exports = ({ i18n, maxdome, secret }) =>
   ['post', ['/', require('body-parser').json(), async (req, res) => {
     const request = req.body;
-    request.linkedAccount = async () => {
+    request.linkedAccount = () => {
       const accessToken = request.user.accessToken;
       if (!accessToken) {
         return;
       }
-      return await new Request().post(process.env.AI_OAUTH_URL, { body: { accessToken } });
+      return new Request().post(process.env.AI_OAUTH_URL, { body: { accessToken } });
     };
-    const id = request.id;
     const response = {
       render: (renderer, data) => {
         require(`./renderers/${renderer}`)(request, response, data);
@@ -19,8 +18,8 @@ module.exports = ({ i18n, maxdome, secret }) =>
     };
     let error;
     try {
-      if (secret && req.headers['secret'] !== secret) {
-        throw new Error(`incorrect secret '${req.headers['secret']}'`);
+      if (secret && req.headers.secret !== secret) {
+        throw new Error(`incorrect secret '${req.headers.secret}'`);
       }
       response.session = request.session;
       let run = true;

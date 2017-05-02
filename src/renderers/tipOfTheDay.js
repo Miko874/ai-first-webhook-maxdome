@@ -20,7 +20,7 @@ module.exports = (request, response, { tipOfTheDay }) => {
 
   response.say = title;
   response.display = {
-    title: title,
+    title,
     text: asset.description,
   };
   response.session.assetId = asset.id;
