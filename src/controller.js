@@ -11,6 +11,8 @@ module.exports = ({ i18n, maxdome, secret }) =>
       }
       return new Request().post(process.env.AI_OAUTH_URL, { body: { accessToken } });
     };
+    request.params = request.params || {};
+    request.session = request.session || {};
     const response = {
       render: (renderer, data) => {
         require(`./renderers/${renderer}`)(request, response, data);
