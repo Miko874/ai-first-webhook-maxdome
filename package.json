@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "eslint": "^3.15.0",
-    "eslint-config-dnode": "^1.10.0",
+    "eslint-config-dnode": "^1.11.0",
     "nodemon": "^1.11.0"
   }
 }
