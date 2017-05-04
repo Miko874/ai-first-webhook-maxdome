@@ -1,7 +1,9 @@
+const renderer = require('ai-renderer-maxdome');
+
 module.exports = (request, response, { asset }) => {
   const pageStart = request.session.pageStart || 1;
   if (asset) {
-    response.say = asset.title;
+    response.say = renderer({ asset }, ['typedTitle', 'genres']);
     response.display = {
       title: asset.title,
       text: asset.description,
