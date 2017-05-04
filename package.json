@@ -24,7 +24,7 @@
     "node": "7.6.x"
   },
   "dependencies": {
-    "ai-renderer-maxdome": "^1.1.0",
+    "ai-renderer-maxdome": "^1.2.1",
     "body-parser": "^1.16.0",
     "dcontrollers": "^1.4.1",
     "dexpress": "^3.0.0",

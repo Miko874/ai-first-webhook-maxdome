@@ -4,6 +4,7 @@ const Request = require('drequest').Request;
 module.exports = ({ i18n, maxdome, secret }) =>
   ['post', ['/', require('body-parser').json(), async (req, res) => {
     const request = req.body;
+    request.language = _.get(request, 'locale', 'en').substr(0, 2);
     request.linkedAccount = () => {
       const accessToken = request.user.accessToken;
       if (!accessToken) {
@@ -53,14 +54,13 @@ module.exports = ({ i18n, maxdome, secret }) =>
       'display.title',
       'display.text',
     ];
-    const language = _.get(request, 'locale', 'en').substr(0, 2);
     for (const path of paths) {
       const value = _.get(response, path);
       if (value) {
         if (Array.isArray(value)) {
-          _.set(response, path, i18n.__({ phrase: value[0], locale: language }, value[1]));
+          _.set(response, path, i18n.__({ phrase: value[0], locale: request.language }, value[1]));
         } else {
-          _.set(response, path, i18n.__({ phrase: value, locale: language }));
+          _.set(response, path, i18n.__({ phrase: value, locale: request.language }));
         }
       }
     }
