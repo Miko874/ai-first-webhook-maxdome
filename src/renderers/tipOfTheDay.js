@@ -1,27 +1,22 @@
+const renderer = require('ai-renderer-maxdome');
+
 module.exports = (request, response, { tipOfTheDay }) => {
-  if (!tipOfTheDay || !tipOfTheDay.review) {
-    response.say = 'No tip of the day available';
-    return;
-  }
-
   const review = tipOfTheDay.review;
+  if (!review) {
+    throw new Error('missing linked review in the tipOfTheDay');
+  }
   const asset = review.asset;
+  if (!asset) {
+    throw new Error('missing linked asset in the review');
+  }
   const maxpert = review.maxpert;
-
-  const title = [
-    'Todays tip of the day come from {{firstname}} {{surname}}: {{title}}, {{headline}}',
-    {
-      firstname: maxpert.firstname,
-      surname: maxpert.surname,
-      title: asset.title,
-      headline: review.headline,
-    }
-  ];
-
-  response.say = title;
+  if (!maxpert) {
+    throw new Error('missing linked maxpert in the review');
+  }
+  response.say = renderer(tipOfTheDay, ['tipOfTheDay', 'maxpert', 'typedTitle', 'review']);
   response.display = {
-    title,
-    text: asset.description,
+    title: renderer(tipOfTheDay, ['tipOfTheDay', 'typedTitle']),
+    text: renderer(tipOfTheDay, ['description']),
   };
   response.session.assetId = asset.id;
 };

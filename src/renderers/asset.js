@@ -5,8 +5,8 @@ module.exports = (request, response, { asset }) => {
   if (asset) {
     response.say = renderer({ asset }, ['typedTitle', 'genres'], request.language);
     response.display = {
-      title: asset.title,
-      text: asset.description,
+      title: renderer({ asset }, ['typedTitle'], request.language),
+      text: renderer({ asset }, ['description'], request.language),
     };
     response.session.assetId = asset.id;
     response.session.pageStart = pageStart;
