@@ -5,12 +5,13 @@ module.exports = ({ i18n, maxdome, secret }) =>
   ['post', ['/', require('body-parser').json(), async (req, res) => {
     const request = req.body;
     request.language = _.get(request, 'locale', 'en').substr(0, 2);
-    request.linkedAccount = () => {
+    request.linkedAccount = async () => {
       const accessToken = request.user.accessToken;
       if (!accessToken) {
         return;
       }
-      return new Request().post(process.env.AI_OAUTH_URL, { body: { accessToken } });
+      const data = await new Request().post(process.env.AI_OAUTH_URL, { body: { accessToken } });
+      return data.linkedAccount;
     };
     request.params = request.params || {};
     request.session = request.session || {};
