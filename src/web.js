@@ -7,13 +7,10 @@ i18n.configure({
   locales: ['en', 'de'],
 });
 
-require('dcontrollers')(
-  require('dexpress')(),
-  [
-    require('./controller')({
-      i18n,
-      maxdome: require('drequest-maxdome').getRequestBuilder(),
-      secret: process.env.AI_WEBHOOK_SECRET,
-    }),
-  ]
-);
+require('dcontrollers')(require('dexpress')(), [
+  require('./controller')({
+    i18n,
+    maxdome: require('drequest-maxdome').getRequestBuilder(),
+    secret: process.env.AI_WEBHOOK_SECRET,
+  }),
+]);

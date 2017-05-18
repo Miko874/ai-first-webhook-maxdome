@@ -1,6 +1,0 @@
-{
-  "extends": "dnode",
-  "rules": {
-    "no-console": "off"
-  }
-}

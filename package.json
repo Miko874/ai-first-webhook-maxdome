@@ -17,7 +17,7 @@
   "readmeFilename": "README.md",
   "scripts": {
     "develop": "nodemon src/web.js",
-    "lint": "eslint src",
+    "fmt": "dprettier",
     "start": "node src/web.js"
   },
   "engines": {
@@ -35,8 +35,7 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "eslint": "^3.15.0",
-    "eslint-config-dnode": "^1.11.0",
+    "dprettier": "^1.1.0",
     "nodemon": "^1.11.0"
   }
 }

@@ -1,13 +1,12 @@
 const { AssetsQueryOptions } = require('drequest-maxdome');
 
 module.exports = async (request, response, { maxdome }) => {
-  const assetsQueryOptions =
-    new AssetsQueryOptions()
-      .addFilter('new')
-      .addFilter('contentTypeSeriesOrMovies')
-      .addQuery('pageSize', 1)
-      .addQuery('pageStart', request.session.pageStart || 1)
-      .addSort('activeLicenseStart', 'desc');
+  const assetsQueryOptions = new AssetsQueryOptions()
+    .addFilter('new')
+    .addFilter('contentTypeSeriesOrMovies')
+    .addQuery('pageSize', 1)
+    .addQuery('pageStart', request.session.pageStart || 1)
+    .addSort('activeLicenseStart', 'desc');
   if (request.params.genre) {
     assetsQueryOptions.addFilter('genre', request.params.genre);
   }

@@ -13,7 +13,12 @@ module.exports = (request, response, { tipOfTheDay }) => {
   if (!maxpert) {
     throw new Error('missing linked maxpert in the review');
   }
-  response.say = renderer(tipOfTheDay, ['tipOfTheDay', 'maxpert', 'typedTitle', 'review']);
+  response.say = renderer(tipOfTheDay, [
+    'tipOfTheDay',
+    'maxpert',
+    'typedTitle',
+    'review',
+  ]);
   response.display = {
     title: renderer(tipOfTheDay, ['tipOfTheDay', 'typedTitle']),
     text: renderer(tipOfTheDay, ['description']),
