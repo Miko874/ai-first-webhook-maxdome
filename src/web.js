@@ -1,5 +1,11 @@
 require('dotenv-safe').config();
 
+const app = require('dexpress')();
+
+require('dmiddlewares')(app, [
+  require('body-parser').json(),
+]);
+
 const i18n = require('i18n');
 i18n.configure({
   directory: `${__dirname}/../locales`,
@@ -7,10 +13,9 @@ i18n.configure({
   locales: ['en', 'de'],
 });
 
-require('dcontrollers')(require('dexpress')(), [
+require('dcontrollers')(app, [
   require('./controller')({
     i18n,
     maxdome: require('drequest-maxdome').getRequestBuilder(),
-    secret: process.env.AI_WEBHOOK_SECRET,
   }),
 ]);

@@ -1,11 +1,10 @@
 const _ = require('lodash');
 const Request = require('drequest').Request;
 
-module.exports = ({ i18n, maxdome, secret }) => [
+module.exports = ({ i18n, maxdome }) => [
   'post',
   [
     '/',
-    require('body-parser').json(),
     async (req, res) => {
       const request = req.body;
       request.language = _.get(request, 'locale', 'en').substr(0, 2);
@@ -28,9 +27,6 @@ module.exports = ({ i18n, maxdome, secret }) => [
       };
       let error;
       try {
-        if (secret && req.headers.secret !== secret) {
-          throw new Error(`incorrect secret '${req.headers.secret}'`);
-        }
         response.session = request.session;
         let run = true;
         while (run) {
