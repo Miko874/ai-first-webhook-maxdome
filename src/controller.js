@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const Request = require('drequest').Request;
+const { Request } = require('@dnode/request');
 
 module.exports = ({ i18n, maxdome }) => [
   'post',

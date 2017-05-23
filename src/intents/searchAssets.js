@@ -1,4 +1,4 @@
-const { AssetsQueryOptions } = require('drequest-maxdome');
+const { AssetsQueryOptions } = require('@dnode/request-maxdome');
 
 module.exports = async (request, response, { maxdome }) => {
   if (!request.params.search) {

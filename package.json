@@ -1,42 +1,31 @@
 {
   "private": true,
-  "name": "ai-webhook-maxdome",
+  "engines": {
+    "node": "^7.6.0"
+  },
+  "name": "@ai-first/webhook-maxdome",
   "version": "1.0.0",
-  "description": "",
+  "description": "Webhook for maxdome supporting the AI JSON format",
+  "repository": "sharaal/ai-first-webhook-maxdome",
   "license": "UNLICENSED",
-  "homepage": "http://github.com/dragonprojects/ai-webhook-maxdome",
-  "author": {
-    "name": "Sharaal",
-    "email": "developer@dragonprojects.de",
-    "url": "http://dragonprojects.de"
+  "publishConfig": {
+    "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dragonprojects/ai-webhook-maxdome.git"
-  },
-  "readmeFilename": "README.md",
+  "main": "src/web.js",
   "scripts": {
-    "develop": "nodemon src/web.js",
-    "fmt": "dprettier",
     "start": "node src/web.js"
   },
-  "engines": {
-    "node": "7.6.x"
-  },
   "dependencies": {
-    "ai-renderer-maxdome": "^1.2.3",
+    "@ai-first/renderer-maxdome": "^1.2.4",
+    "@dnode/controllers": "^1.0.0",
+    "@dnode/middlewares": "^1.0.1",
+    "@dnode/request": "^1.0.0",
+    "@dnode/request-maxdome": "^1.0.0",
     "body-parser": "^1.16.0",
-    "dcontrollers": "^1.4.1",
-    "dexpress": "^3.0.0",
-    "dmiddlewares": "^1.2.2",
     "dotenv-safe": "^4.0.3",
-    "drequest": "^3.1.1",
-    "drequest-maxdome": "^2.3.3",
+    "express": "^4.15.3",
     "i18n": "^0.8.3",
     "lodash": "^4.17.4"
   },
-  "devDependencies": {
-    "dprettier": "^1.1.0",
-    "nodemon": "^1.11.0"
-  }
+  "devDependencies": {}
 }

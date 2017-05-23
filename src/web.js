@@ -1,8 +1,9 @@
 require('dotenv-safe').config();
 
-const app = require('dexpress')();
+const app = require('express')();
+app.disable('x-powered-by');
 
-require('dmiddlewares')(app, [
+require('@dnode/middlewares')(app, [
   require('body-parser').json(),
 ]);
 
@@ -12,10 +13,14 @@ i18n.configure({
   updateFiles: false,
   locales: ['en', 'de'],
 });
+const maxdome = require('@dnode/request-maxdome').getRequestBuilder();
 
-require('dcontrollers')(app, [
-  require('./controller')({
-    i18n,
-    maxdome: require('drequest-maxdome').getRequestBuilder(),
-  }),
+require('@dnode/controllers')(app, [
+  require('./controller')({ i18n, maxdome }),
 ]);
+
+if (module.parent) {
+  module.exports = app;
+} else {
+  app.listen(process.env.PORT);
+}

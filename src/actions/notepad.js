@@ -1,4 +1,4 @@
-const SessionOptions = require('drequest-maxdome').SessionOptions;
+const SessionOptions = require('@dnode/request-maxdome').SessionOptions;
 
 module.exports = async (request, response, { maxdome }) => {
   const assetId = request.session.assetId;
