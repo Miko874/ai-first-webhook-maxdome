@@ -33,10 +33,6 @@
     {
       "intent": "thanks",
       "slots": []
-    },
-    {
-      "intent": "tipOfTheDay",
-      "slots": []
     }
   ]
 }

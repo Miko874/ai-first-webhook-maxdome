@@ -5,4 +5,3 @@ newAssets was es Neues an {genre} gibt
 notepad Zum Merkzettel hinzufügen
 searchAssets nach {name}
 thanks Danke
-tipOfTheDay nach dem Tipp des Tages
