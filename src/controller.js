@@ -7,7 +7,7 @@ module.exports = ({ i18n, maxdome }) => [
     '/',
     async (req, res) => {
       const request = req.body;
-      request.language = _.get(request, 'locale', 'en').substr(0, 2);
+      request.language = _.get(request, 'locale', 'de').substr(0, 2);
       request.linkedAccount = async () => {
         const accessToken = request.user.accessToken;
         if (!accessToken) {
