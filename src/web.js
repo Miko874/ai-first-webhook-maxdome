@@ -3,9 +3,7 @@ require('dotenv-safe').config();
 const app = require('express')();
 app.disable('x-powered-by');
 
-require('@dnode/middlewares')(app, [
-  require('body-parser').json(),
-]);
+require('@dnode/middlewares')(app, [require('body-parser').json()]);
 
 const i18n = require('i18n');
 i18n.configure({
